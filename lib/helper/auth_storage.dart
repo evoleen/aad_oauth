@@ -11,7 +11,7 @@ class AuthStorage {
   AuthStorage({
     String tokenIdentifier = 'Token',
     required AndroidOptions aOptions,
-    IOSOptions iOptions = IOSOptions.defaultOptions,
+    required IOSOptions iOptions,
   })  : _tokenIdentifier = tokenIdentifier,
         _secureStorage =
             FlutterSecureStorage(aOptions: aOptions, iOptions: iOptions);
