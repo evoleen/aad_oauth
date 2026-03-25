@@ -121,9 +121,10 @@ var aadOauth = (function () {
         extraQueryParameters: tokenRequest.extraQueryParameters
       });
 
-      return  authResult = silentAuthResult;
+      authResult = silentAuthResult;
+      return authResult;
     } catch (error) {
-      console.log('Unable to silently acquire a new token: ' + error.message)
+      console.log('Unable to silently acquire a new token: ' + error.message);
       return null;
     }
 
@@ -151,7 +152,7 @@ var aadOauth = (function () {
     // a cached access token
     await silentlyAcquireToken()
 
-    if(authResult != null) {
+    if (authResult != null) {
       // Skip interactive login
       onSuccess(authResult.accessToken ?? null);
       return
@@ -214,10 +215,11 @@ var aadOauth = (function () {
     // a cached access token
     await silentlyAcquireToken()
 
-    if(authResult != null) {
+    if (authResult != null) {
       onSuccess(authResult.accessToken ?? null);
       return
     }
+    onError(new Error('Silent token refresh did not produce a token'));
   }
 
   function getAccount() {
