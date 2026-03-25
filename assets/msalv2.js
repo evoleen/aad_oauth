@@ -218,6 +218,7 @@ var aadOauth = (function () {
       onSuccess(authResult.accessToken ?? null);
       return
     }
+    onError(new Error('Silent token refresh did not produce a token'));
   }
 
   function getAccount() {
