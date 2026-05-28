@@ -99,7 +99,6 @@ var aadOauth = (function () {
     // token expires.
     if (redirectHandlerTask !== null) {
       const pendingTask = redirectHandlerTask;
-      redirectHandlerTask = null;
       try {
         const result = await pendingTask;
         if (result !== null) {
@@ -113,6 +112,9 @@ var aadOauth = (function () {
         // can be diagnosed in the field.
         console.warn('handleRedirectPromise rejected: ' +
           (error && error.message ? error.message : error));
+      }
+      finally {
+        redirectHandlerTask = null;
       }
     }
 
