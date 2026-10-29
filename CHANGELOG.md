@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+- Bump flutter_secure_storage to ^11.0.0. Drop AndroidOptions.encryptedSharedPreferences
+  (removed upstream; cipher storage is now the default). Callers that previously passed
+  `AndroidOptions(encryptedSharedPreferences: true)` should use `const AndroidOptions()`.
+
 ## [1.0.1] - 20230215
 
 - Optionally avoid prompting popup on web logout https://github.com/Earlybyte/aad_oauth/pull/277 (by @phildupuis)
