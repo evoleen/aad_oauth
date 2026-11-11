@@ -1,10 +1,13 @@
 # Changelog
 
-## [Unreleased]
+## [2.0.0] - 2026-11-11
 
-- Bump flutter_secure_storage to ^11.0.0. Drop AndroidOptions.encryptedSharedPreferences
-  (removed upstream; cipher storage is now the default). Callers that previously passed
-  `AndroidOptions(encryptedSharedPreferences: true)` should use `const AndroidOptions()`.
+### Breaking Changes
+
+- **Major:** upgrade `flutter_secure_storage` from `^9.2.4` to `^11.0.0`.
+- **Android token cache:** v11 removes `AndroidOptions.encryptedSharedPreferences` and uses AES-GCM cipher storage by default. Tokens written under v9 with EncryptedSharedPreferences are **not** migrated when jumping 9 → 11 (only v10 performed that migration). **Existing Android installs will need a one-time re-login** after upgrading; iOS is unaffected.
+- Default `Config.aOptions` is now `const AndroidOptions()` instead of `AndroidOptions(encryptedSharedPreferences: true)`.
+- Callers that previously passed `AndroidOptions(encryptedSharedPreferences: true)` must switch to `const AndroidOptions()` (or other supported v11 options).
 
 ## [1.0.1] - 20230215
 
