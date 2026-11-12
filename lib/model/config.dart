@@ -136,7 +136,9 @@ class Config {
   /// User agent of web view. (using flutter_webview_plugin)
   String? userAgent;
 
-  /// android storage options for shared preferences - defaults to encrypting shared prefs
+  /// Android storage options for flutter_secure_storage.
+  /// Defaults to [AndroidOptions] with AES-GCM cipher storage (EncryptedSharedPreferences
+  /// was removed in flutter_secure_storage 11).
   AndroidOptions aOptions;
 
   /// ios storage options for secure storage
@@ -241,7 +243,7 @@ class Config {
                 ? 'https://$tenant.b2clogin.com/$tenant.onmicrosoft.com/$policy/oauth2/v2.0/token'
                 : '$customDomainUrlWithTenantId/$policy/oauth2/v2.0/token')
                 : 'https://login.microsoftonline.com/$tenant/oauth2/v2.0/token'),
-        aOptions = aOptions ?? AndroidOptions(encryptedSharedPreferences: true),
+        aOptions = aOptions ?? const AndroidOptions(),
         cacheLocation = cacheLocation ?? CacheLocation.localStorage,
         redirectUri = redirectUri ?? getDefaultRedirectUri();
 
